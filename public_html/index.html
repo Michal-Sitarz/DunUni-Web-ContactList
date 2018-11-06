@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Contact List</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style>
+            table{
+                border-collapse: collapse;
+                font-family: Tahoma;
+                font-size: .8em;
+            }
+            th, td {
+                border: 1px solid darkblue;
+                padding: .25em;
+            }
+
+            .tableRowContactsList:hover {
+                background-color: lightblue;
+            }
+            
+            #inputArea th, #inputArea td{
+                border: none;
+            }
+            
+            #btnAddAppendContact, #btnCancelEditContact{
+                width: 60px;
+            }
+           
+            .show{
+            }
+            
+            .hide{
+                display: none;
+            }
+            
+            
+        </style>
+
+    </head>
+    <body>
+        <h3>Add New Contact</h3>
+        <div id="inputArea">
+            <table>
+                <tr><td>First Name</td><td><input id="inputFirstName"></td></tr>
+                <tr><td>Last Name</td><td><input id="inputLastName"></td></tr>
+                <tr><td>Phone No.</td><td><input id="inputPhone"></td></tr>
+                <tr><td>E-mail</td><td><input id="inputEmail"></td></tr>
+                <tr>
+                    <td style="text-align:right">-></td>
+                    <td><button id="btnAddAppendContact" type="button" onclick="btnAddAppendContact()">Add</button>
+                        <button id="btnCancelEditContact" class="hide" type="button" onclick="cancelChangesToContact()">Cancel</button></td>
+                </tr>
+            </table>
+        </div>
+       
+        <br><br><hr>
+        
+        <h2>Contact List</h2>
+        <div id="contactListArea">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Mobile Number</th>
+                        <th>E-mail address</th>
+                    </tr>
+                </thead>
+                <tbody id="tblBodyContacts">
+                </tbody>
+            </table>
+        </div>
+        
+        <br><br><hr>
+        
+        <script src="main.js"></script>
+    </body>
+</html>
