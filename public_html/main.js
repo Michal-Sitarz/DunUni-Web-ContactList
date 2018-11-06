@@ -117,6 +117,7 @@ function deleteContact(row_id){
     // it will make sure to clear the fields of that row from Edit fields
     clearInputFields();
     resetButtons();
+    
 }
 
 function clearInputFields(){
