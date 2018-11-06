@@ -83,18 +83,13 @@ function saveChangesToContact(row_id){
     alert('Changes to the entry in a row '+row_id+' has been saved!');
     
     currentRow = 0; // reset the 'currentRow' counter as it is checked against 'save' mechanism every time it tries to update the row
-    
     clearInputFields();
-    // bring back the button text to default "Add" which is used as control variable in 'btnAddAppendContact()'
-    document.getElementById("btnAddAppendContact").innerHTML = 'Add';
+    resetButtons();
 }
 
 function cancelChangesToContact(){
     clearInputFields();
-    // bring back the button text to default "Add" which is used as control variable in 'btnAddAppendContact()' 
-    // to allow add new contact
-    document.getElementById("btnAddAppendContact").innerHTML = 'Add';
-    document.getElementById("btnCancelEditContact").className = 'hide';
+    resetButtons();
 }
 
 function editContact(row_id){
@@ -117,6 +112,11 @@ function deleteContact(row_id){
 
     tblNumberOfRows--;
     tblUpdateRowIDs();
+    
+    // in case the row was in "Edit" mode and it was decided to delete it 
+    // it will make sure to clear the fields of that row from Edit fields
+    clearInputFields();
+    resetButtons();
 }
 
 function clearInputFields(){
@@ -128,14 +128,20 @@ function clearInputFields(){
     document.getElementById("inputEmail").value = "";
 }
 
+function resetButtons(){
+    // bring back the button text to default "Add" which is used as control variable in 'btnAddAppendContact()' 
+    // to allow add new contact
+    document.getElementById("btnAddAppendContact").innerHTML = 'Add';
+    document.getElementById("btnCancelEditContact").className = 'hide';
+}
+
 function tblUpdateRowIDs(){
-    let tbl = document.getElementById("tblBodyContacts");
     let allIDcells = tbl.getElementsByClassName("cellID");
     let allTableRowIDs = tbl.getElementsByClassName("tableRowContactsList");
     let allEditButtons = tbl.getElementsByClassName("btnEdit");
     let allDeleteButtons = tbl.getElementsByClassName("btnDelete");
     
-    for(let i=0;i<=allIDcells.length;i++){
+    for(let i=0;i<=allIDcells.length-1;i++){
         allIDcells[i].innerHTML = i+1;
         allTableRowIDs[i].id = 'row'+(i+1);
         allEditButtons[i].id = i+1;
